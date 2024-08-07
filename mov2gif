@@ -1,0 +1,1 @@
+ffmpeg -i v2.mov -pix_fmt rgb24 -r 10 -s 320x240 v2.gif
