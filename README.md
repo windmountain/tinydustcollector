@@ -25,3 +25,6 @@ The .scad file can be opened with [OpenSCAD](https://openscad.org). Units are in
 It's 29 inches tall, 32 inches wide, and 13-1/2 inches deep. Joinery is left as an exercise for the reader (I went with dowels).
 
 I also wound up installing the front panel on [frameless, full overlap](https://www.rockler.com/blumreg-110deg-soft-close-blumotion-clip-top-overlay-hinges-for-frameless-cabinets-hinges) hinges and drilling a bunch of holes in the back for shopvac exhaust.
+
+![Dust collector with cabinet doors open](open.jpg)
+![Dust collector with cabinet doors closed](closed.jpg)
