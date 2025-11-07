@@ -37,24 +37,27 @@ module shopVac() {
 }
 
 
-module chipSystem() {
-    
+module tupperware() {
     chipWidth = 15;
     chipHeight = 9.5;
     chipDepth = 11.25;
-    
-    deputyConeHeight = 13.5;
-    deputyBottomRadius = 3;
-    deputyTopRadius = 4.5;
-    
-    outflowVerticalOffset = -1.5;
-    outflowHorizontalOffset = 1.75;
-    outflowLengthFromCenter = 4;
-    
-    
+
     color("white", 0.85) {
         // Tupperware (airtight) chip collector
         cube([chipWidth, chipDepth, chipHeight]);
+    }
+}
+
+module dustDeputy() {
+    chipWidth = 15;
+    chipHeight = 9.5;
+    chipDepth = 11.25;
+
+    deputyConeHeight = 13.5;
+    deputyBottomRadius = 3;
+    deputyTopRadius = 4.5;
+
+    color("white", 0.85) {
         // Cyclonic "dust deputy" from Oenida Air Systems
         translate([chipWidth/2, chipDepth/2, chipHeight]) {
             cylinder(
@@ -77,12 +80,39 @@ module chipSystem() {
     }
 }
 
+module chipSystem() {
+
+    // Tupperware container
+    tupperware();
+
+    // Cyclonic "dust deputy"
+    dustDeputy();
+}
+
+module dustDeputySupport() {
+    overallDepth = 12;
+
+    // dust deputy support
+    // (keeps chip bin suspended just enough so that
+    // it can be dropped from the lid and removed)
+    color("green", 1.0) {
+        translate([14 + 0.75,0,14]){
+            difference() {
+                cube([16.5, overallDepth, 0.75]);
+                translate([8.25,overallDepth/2,-0.125]) {
+                    cylinder(h = 1, r = 3.5, $fn = 20);
+                }
+            }
+        }
+    }
+}
+
 module cabinet() {
     overallDepth = 12;
     overallWidth = 32;
     overallHeight = 29;
         // cube([overallWidth, overallDepth, overallHeight]);
-        
+
         // bottom
         color("green", 1.0) {
             cube([overallWidth, overallDepth, 0.75]);
@@ -99,18 +129,7 @@ module cabinet() {
             }
         }
         // dust deputy support
-        // (keeps chip bin suspended just enough so that
-        // it can be dropped from the lid and removed)
-        color("green", 1.0) {
-            translate([14 + 0.75,0,14]){
-                difference() {
-                    cube([16.5, overallDepth, 0.75]);
-                    translate([8.25,overallDepth/2,-0.125]) {
-                        cylinder(h = 1, r = 3.5, $fn = 20);
-                    }
-                }
-            }
-        }
+        dustDeputySupport();
         
         // side 1
         color("lightgreen") {
